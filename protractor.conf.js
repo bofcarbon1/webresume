@@ -13,7 +13,8 @@ exports.config = {
     'browserName': 'chrome'
   },
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  //baseUrl: 'http://localhost:4200/',
+  baseUrl: 'https://webresume-bofcarbon1.c9users.io:8080',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

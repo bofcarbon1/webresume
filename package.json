@@ -1,6 +1,8 @@
 {
   "name": "webresume",
   "version": "0.0.0",
+  "description": "Brian Quinn web resume using Angular2 ", 
+  "author": "Brian Quinn <bofcarbon1@gmail.com>",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {

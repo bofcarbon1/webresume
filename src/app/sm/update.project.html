@@ -1,0 +1,53 @@
+<span *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</span>
+<span *ngIf="successMessage" class="alert alert-success">{{successMessage}}</span>
+
+<form class="form col-md-4" [hidden]="submitted">
+  <div class="form-group" [formGroup]="updProjForm">
+    <label class="control-label" for="nameInput">Project name</label>
+    <div>
+      <input id="nameInput" class="form-control" #na type="text" 
+      formControlName="name" (change)="modifiedName(na.value)">
+    <!--  <control-errors control="name"
+        [errors]="{
+          'required': 'Project name is required',
+          'maxlength': 'The maximum length of the project name is 50 characters'
+        }"></control-errors> -->
+    </div>
+    <label class="control-label" for="yearInput">Year</label>
+    <div>
+      <input id="yearInput" class="form-control" #y type="text"  
+      formControlName="year" (change)="modifiedYear(y.value)">
+      <!-- <control-errors control="year"
+        [errors]="{
+          'invalidYear': 'The project year is invalid'
+        }"></control-errors> -->
+    </div>
+    <label class="control-label" for="noteInput">Note</label>
+    <div>
+      <input id="noteInput" class="form-control" #n type="text" 
+      formControlName="note" (change)="modifiedNote(n.value)">
+      <!-- <control-errors control="note"
+        [errors]="{
+          'invalidNote': 'The project note is invalid'
+        }"></control-errors> -->
+    </div>
+    <label class="control-label" for="typeInput">Project Type</label>
+    <div>
+      <select class="form-control" #ty ngControl="type"
+      (select)="modifiedType(ty.value)">
+          <option *ngFor="let t of types" [value]="t">{{t}}</option>
+      </select>
+      <br/>
+      <br/>
+      <!-- <control-errors control="type"
+        [errors]="{
+          'required': 'Project type is required'
+        }"></control-errors> -->
+    </div>
+  </div>
+</form>
+<br>
+<div class="container" [hidden]="submitted">
+   <button class="btn btn-default" (click)="updProject()" 
+   [disabled]="!updProjForm.valid">Submit</button>
+</div>

@@ -1,3 +1,53 @@
-<h1>
-  {{title}}
-</h1>
+<div class="row" style="background-color: #009999">
+     <div class="col-md-12">
+       <h3>{{name}} - {{title}}</h3> 
+    </div>
+</div>
+<div class="row" style="background-color:#b3ffff">
+    <div class="col-md-6">
+        <p>Providing .NET Web Application/Database develpement and support</p>
+        <p>
+            <strong>Check out my other links: </strong>
+             <template ngFor let-sitelink [ngForOf]="sitelinks">
+                <a href={{sitelink.sitelink}}>{{sitelink.sitename}}</a>
+            </template>
+        </p>
+    </div>
+     <div class="col-md-6">
+        <p>{{phone}}</p>
+        <p>{{email}}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <webresume-skill>Loading....</webresume-skill>
+    </div>
+</div>
+<div class="row" >
+    <div class="col-md-12" style="background-color: #009999">
+        <p><strong>Project Highlights</strong></p> 
+    </div>
+</div>
+<div class="row" >
+    <div class="col-md-8">
+      <webresume-service>Loading....</webresume-service> 
+    </div>
+    <div class="col-md-2">
+        <img src="./img/BrianPic.jpg" alt="Brian " style="border: 5px solid black" 
+        height="180" width="180">
+    </div>
+    <div class="col-md-2">
+        <h4><b>Latest News:</b></h4>
+        <p>I'm learning Angular 2. In fact this digital resume is written in that script language</p>
+    </div>
+</div>
+<div class="row" >
+    <div class="col-md-12">
+        <nav class="navbar navbar-default">
+          <ul class="nav navbar-nav">
+              <li><a routerLink="/sm-home" routerLinkActive="active">SM</a></li>
+          </ul>
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
+</div>

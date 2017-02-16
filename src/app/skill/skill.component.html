@@ -1,0 +1,45 @@
+<div class="row" style="background-color: #009999">
+     <div class="col-md-12">
+       <p><strong>Skills</strong></p> 
+    </div>
+</div>
+<table class="table table-bordered table-striped" style="border: 5px solid black">
+    <thead class="thead-inverse" style="background-color: #737373">
+        <tr>
+            <template ngFor let-service [ngForOf]="services">
+                <th>{{service.service}}</th>
+            </template>
+        </tr>
+    </thead>
+  <tbody>
+    <tr>
+      <td>
+        <table class="table table-bordered table-striped">
+          <tbody>
+           <template ngFor let-skillweb [ngForOf]="webskills">
+            <tr><td><span>{{skillweb.skillname}}</span></td></tr>
+           </template>
+          </tbody>
+        </table>
+      </td>
+      <td>
+         <table class="table table-bordered table-striped">
+          <tbody>
+           <template ngFor let-skilldatabase [ngForOf]="databaseskills">
+            <tr><td><span>{{skilldatabase.skillname}}</span></td></tr>
+           </template>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table class="table table-bordered table-striped">
+          <tbody>
+           <template ngFor let-skillservice [ngForOf]="serviceskills">
+            <tr><td><span>{{skillservice.skillname}}</span></td></tr>
+           </template>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
