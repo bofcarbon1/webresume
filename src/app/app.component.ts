@@ -1,5 +1,5 @@
+//Angular 2 Specific
 import {Component, Inject} from '@angular/core';
-//import {bootstrap} from '@angular/platform-browser-dynamic';
 import { Http, 
   Response, 
   RequestOptions, 
@@ -10,6 +10,8 @@ import { Observable } from 'rxjs/Observable';
 import {APP_BASE_HREF, 
   LocationStrategy, 
   HashLocationStrategy} from '@angular/common';
+  
+//Application Specific  
 import {WRService} from './webresume.service';
 
 @Component({

@@ -8,8 +8,9 @@ import {
   forwardRef,
   Host
 } from '@angular/core';
-//import {bootstrap} from '@angular/platform-browser-dynamic';
 import {ProjectService} from './project.service';
+import { WRService } from '../webresume.service';
+
 
 @Component({
   selector: `tab`,
@@ -107,8 +108,13 @@ export class Tabs {
       <td>
         <table class="table table-bordered table-striped" >
           <tbody>
-           <template ngFor let-project [ngForOf]='projects' >
-            <tr><td><span>{{project}}</span></td></tr>
+           <template ngFor let-project [ngForOf]="allprojects 
+           | projecttypefilter : 'web' | sortDscBy : 'year' " >
+            <tr>
+             <td>
+              <span>{{project.name}} -- {{project.year}} -- {{project.note}}</span>
+             </td>
+            </tr>
            </template>
           </tbody>
         </table>
@@ -125,8 +131,13 @@ export class Tabs {
       <td>
         <table class="table table-bordered table-striped">
           <tbody>
-           <template ngFor let-project [ngForOf]='projects' >
-            <tr><td><span>{{project}}</span></td></tr>
+           <template ngFor let-project [ngForOf]="allprojects 
+           | projecttypefilter : 'database' | sortDscBy : 'year' " >
+            <tr>
+             <td>
+              <span>{{project.name}} -- {{project.year}} -- {{project.note}}</span>
+             </td>
+            </tr>
            </template>
           </tbody>
         </table>
@@ -143,8 +154,13 @@ export class Tabs {
       <td>
         <table class="table table-bordered table-striped">
           <tbody>
-           <template ngFor let-project [ngForOf]='projects' >
-            <tr><td><span>{{project}}</span></td></tr>
+           <template ngFor let-project [ngForOf]="allprojects 
+           | projecttypefilter : 'service' | sortDscBy : 'year' " >
+            <tr>
+             <td>
+              <span>{{project.name}} -- {{project.year}} -- {{project.note}}</span>
+             </td>
+            </tr>
            </template>
           </tbody>
         </table>
@@ -158,43 +174,41 @@ export class Tabs {
   </div>
   `
   ,
-  //directives: [Tab, Tabs]
-  //providers: [ProjectService]
+ 
 })
 export class WebResumeService {
   projects:string[];
+  allprojects:string;
+  public myProjects:string;
   tabTitle:string;  
   
-  constructor(public projectService:ProjectService){ 
-    this.projects = [
-      "Comcast   (2016) - Added features to .NET product web app using C#.NET MVC JavaScript(JQuery, Ajax)",
-      "NDOR      (2016) - Created a .NET web admin tool using C#.NET MVC JavaScript(JQuery, Ajax) ",
-      "Limelight (2016) - Created .NET web apps using C#.NET MVC JavaScript(JQuery, Ajax)  "
-    ];
+  constructor(
+    public projectService:ProjectService,
+    public wrservice:WRService) {
+   
+  }
+  
+  ngOnInit() {
+    this.getProjects();
   }
   
   tabChanged(tab) {
     this.projectService.setTabTitle(tab.title);
     this.tabTitle = tab.title;
-    if (this.tabTitle === "Web Applications") {
-      this.projects = [
-        "Comcast   (2016) - Added features to .NET product web app using C#.NET MVC JavaScript(JQuery, Ajax)",
-        "NDOR      (2016) - Created a .NET web admin tool using C#.NET MVC JavaScript(JQuery, Ajax) ",
-        "Limelight (2016) - Created .NET web apps using C#.NET MVC JavaScript(JQuery, Ajax)  "
-      ];
-    }
-    if (this.tabTitle === "Database Applications") {
-      this.projects = [
-        "Comcast   (2016) - Created and updated product database tables using using SQL Server",
-        "NDOR      (2016) - Updated highway safety database tables using SQL Server ",
-        "Limelight (2016) - Created and updated database tables using SQL Server "
-      ];
-    }
-    if (this.tabTitle === "Web Services") {
-      this.projects = [
-        "Limelight (2016) - Created web services using .NET Web API  "
-      ];
-    }
+    this.getProjects();
   }
+  
+  private getProjects(): void {
+    this.wrservice
+      .GetProjects()
+      .subscribe(data => this.myProjects = data,
+        error => console.log(error),
+        () => {
+          this.allprojects = this.myProjects;
+          }
+      );
+  }
+  
+  
   
 }
