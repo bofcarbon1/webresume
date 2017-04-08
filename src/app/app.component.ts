@@ -69,7 +69,7 @@ export class AppComponent {
        );
   }
   
-   private getSiteLinks(): void {
+  private getSiteLinks(): void {
     this.wrservice
       .GetSiteLinks()
       .subscribe(data => this.mySiteLinks = data,
