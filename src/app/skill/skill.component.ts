@@ -8,7 +8,6 @@ import { Http,
 @Component({
   selector: 'webresume-skill',
   templateUrl: './skill.component.html'
-  //providers: [WRService, HTTP_PROVIDERS],
 })
 export class WebResumeSkill {
   skilltype:string;

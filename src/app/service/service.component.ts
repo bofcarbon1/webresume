@@ -42,7 +42,7 @@ export class Tab {
         margin: 0;
       }
       .tab-header .is-active {
-        background-color: #737373; //#eee;
+        background-color: #b3ffff;
       }
       .tab-header li {
         display: inline-block;
